@@ -1,0 +1,14 @@
+syntax = "proto3";
+import "protos/MonsterState.proto";
+
+service GameService {
+    rpc getMatchResult(GetMatchResultRequest) returns (FullMonsterStateResponse) {};
+}
+
+message GetMatchResultRequest {
+    string clientId = 1;
+}
+
+message FullMonsterStateResponse {
+    repeated MonsterState allMonsters = 1;
+}
