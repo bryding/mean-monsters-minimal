@@ -11,13 +11,15 @@ namespace Assets.src
     void Start()
     {
 
-      var webHandler = new GrpcWebHandler(new HttpClientHandler());
+      var webHandler = new GrpcWebHandler(new HttpClientHandler()
+      {
+        ServerCertificateCustomValidationCallback = (message, certificate2, arg3, arg4) => true 
+      });
       var option = new GrpcChannelOptions
       {
-        Credentials = ChannelCredentials.Insecure,
         HttpHandler = webHandler,
       };
-      var channel = GrpcChannel.ForAddress("http://127.0.0.1:9091", option);
+      var channel = GrpcChannel.ForAddress("https://127.0.0.1:9091", option);
       var client = new GameService.GameServiceClient(channel);
       FullMonsterStateResponse reply = client.getMatchResult(new GetMatchResultRequest
       {
