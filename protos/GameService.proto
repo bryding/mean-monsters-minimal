@@ -1,5 +1,5 @@
 syntax = "proto3";
-import "protos/MonsterState.proto";
+import "MonsterState.proto";
 
 service GameService {
     rpc getMatchResult(GetMatchResultRequest) returns (FullMonsterStateResponse) {};
